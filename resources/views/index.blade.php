@@ -1,39 +1,31 @@
-{{-- resources/views/globe.blade.php --}}
-<!DOCTYPE html>
-<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>3D Globe - Laravel</title>
-    <style>
-        body { margin: 0; overflow: hidden; background: #000; }
-        #globeViz { width: 100vw; height: 100vh; }
-    </style>
-    <script src="//cdn.jsdelivr.net/npm/globe.gl"></script>
+  <style> body { margin: 0; } </style>
+
+  <script src="//cdn.jsdelivr.net/npm/globe.gl"></script>
 </head>
+
 <body>
-    <div id="globeViz"></div>
+    <div>
+        <div id="globeViz"></div>
+    </div>
 
-    <script>
-        const pointsData = @json($points);
+  <script type="module">
+    import { MeshLambertMaterial, DoubleSide } from 'https://esm.sh/three';
+    import * as topojson from 'https://esm.sh/topojson-client';
 
-        const globePoints = pointsData.map(point => ({
-            lat: point.lat,
-            lng: point.lng,
-            name: point.name,
-            size: 0.3,
-            color: 'red'
-        }));
+    const world = new Globe(document.getElementById('globeViz'))
+      .backgroundColor('rgba(0, 0, 0, 1)')
+      .showGlobe(true)
+      .showAtmosphere(true)
+      .atmosphereColor('rgba(49, 144, 204, 1)');
 
-        new Globe(document.getElementById('globeViz'))
-            .globeImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg')
-            .pointsData(globePoints)
-            .pointAltitude('size')
-            .pointColor('color')
-            .pointLabel('name')
-            .onPointClick(point => {
-                alert(`${point.name}: ${point.lat.toFixed(3)}, ${point.lng.toFixed(3)}`);
-            });
-    </script>
+    fetch('//cdn.jsdelivr.net/npm/world-atlas/countries-110m.json').then(res => res.json())
+.then(topo => {
+        world
+          .polygonsData(topojson.feature(topo, topo.objects.countries).features)
+          .polygonCapMaterial(new MeshLambertMaterial({ color: 'rgba(48, 81, 81, 1)', side: DoubleSide }))
+          .polygonSideColor(() => 'rgba(0, 0, 0, 1)')
+          .polygonStrokeColor(() => 'rgba(36, 59, 59, 1)')
+      });
+  </script>
 </body>
-</html>
