@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "globe.gl": "^2.45.0",
-        "three": "^0.182.0"
+        "three": "^0.182.0",
+        "topojson": "^3.0.2"
     }
 }
