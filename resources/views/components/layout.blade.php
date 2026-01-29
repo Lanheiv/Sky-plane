@@ -7,7 +7,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <title>Sky-plane</title>
     </head>
-    <body class="bg-black">
+    <body style="background-color:rgba(2, 2, 12, 1);">
         <div>
             {{ $slot }}
         </div>
