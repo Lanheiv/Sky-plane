@@ -28,6 +28,16 @@ function loadShowData(data) {
     }
     lastPlane = data.planeID;
     div.classList.remove("hidden");   
+
+    document.getElementById("callname").innerHTML = data.callName;
+    document.getElementById("planeid").innerHTML = data.planeID;
+    document.getElementById("regcountry").innerHTML = data.regCountry;
+    document.getElementById("lat").innerHTML = data.lat;
+    document.getElementById("lng").innerHTML = data.lng;
+    document.getElementById("height").innerHTML = data.height;
+    document.getElementById("heading").innerHTML = data.heading;
+    document.getElementById("vel").innerHTML = data.vel;
+    document.getElementById("verrate").innerHTML = data.verRate;
 }
 async function loadPlanes() {
     let planeList = [];
