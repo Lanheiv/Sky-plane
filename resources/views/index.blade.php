@@ -6,8 +6,8 @@
       <button onclick='{document.getElementById("planeData").classList.add("hidden");}' class="text-gray-500 hover:text-black">x</button>
     </div>
     <div class="space-y-1">
-      <p id="planeid" class="text-2xl font-bold text-gray-900"></p>
-      <p id="callname" class="text-lg text-gray-700 font-medium"></p>
+      <p id="callname" class="text-2xl font-bold text-gray-900"></p>
+      <p id="planeid" class="text-lg text-gray-700 font-medium"></p>
       <p id="regcountry" class="text-sm text-gray-500"></p>
     </div>
     <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
@@ -33,9 +33,15 @@
         <span>Altitude:</span>
         <p id="height"></p>
       </div>
-      <div class="flex justify-between">
-        <span>VerRate:</span>
-        <p id="verrate"></p>
+      <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+        <div>
+          <p class="text-xs text-gray-500">Level status:</p>
+          <p id="levelstatus"></p>
+        </div>
+        <div>
+          <p class="text-xs text-gray-500">Status:</p>
+          <p id="status"></p>
+        </div>
       </div>
     </div>
   </div>
